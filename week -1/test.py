@@ -33,3 +33,4 @@ class BankAccount:
         print("-------------")
         for transaction in self.transactions:
             print(transaction)
+    
