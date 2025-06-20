@@ -39,7 +39,17 @@ class Zoo:
             result[letter].append(animal)
         print("Animaux triés par lettre :", result)
 
+    def group_animals_by_letter(self):
+        grouped = {}
+        for animal in self.animals:
+            letter = animal[0].upper()
+            grouped.setdefault(letter, []).append(animal)
 
+        for letter in grouped:
+            grouped[letter].sort()
+
+        for letter in sorted(grouped):
+            print(f"{letter}: {grouped[letter]}")
 
 
 my_zoo = Zoo("Mon Zoo")
@@ -53,3 +63,4 @@ my_zoo.add_animal("Zèbre")
 my_zoo.sell_animal("Lion")
 my_zoo.get_animals()
 my_zoo.sort_animals()
+my_zoo.group_animals_by_letter()
