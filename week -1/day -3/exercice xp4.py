@@ -31,8 +31,13 @@ class Zoo:
     def sort_animals(self):
         self.animals.sort()
         print("Animaux triés :", ", ".join(self.animals))
-
-
+        result = {}
+        for animal in self.animals:
+            letter = animal[0].upper()
+            if letter not in result:
+                result[letter] = []
+            result[letter].append(animal)
+        print("Animaux triés par lettre :", result)
 
 
 
