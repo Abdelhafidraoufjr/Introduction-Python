@@ -16,6 +16,5 @@ def compare_numbers(user_number):
     else:
         print(f"Fail! Votre nombre : {user_number}, Nombre aléatoire : {random_number}")
 
-
 compare_numbers(50)  
 compare_numbers(23)
