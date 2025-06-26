@@ -1,4 +1,4 @@
-select * from items order by price DESC;
+select * from items order by price ASC;
 
 select * from items where price >= 80 ORDER by price DESC;
 
