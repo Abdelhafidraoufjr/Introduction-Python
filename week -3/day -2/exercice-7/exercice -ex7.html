@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste de Livres</title>
+    <style>
+        .book-details {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            width: 300px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .book-details.read {
+            color: red;
+        }
+        .book-details img {
+            width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <section class="listBooks"></section>
+    <script>
+        const allBooks = [
+            {
+                titre: "Le Petit Prince",
+                auteur: "Antoine de Saint-Exupéry",
+                image: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Petitprince.JPG",
+                alreadyRead: true
+            },
+            {
+                titre: "L'Étranger",
+                auteur: "Albert Camus",
+                image: "https://upload.wikimedia.org/wikipedia/commons/0/0b/L%27%C3%89tranger_%28Camus_novel_-_cover_art%29.jpg",
+                alreadyRead: false
+            }
+        ];
+
+        const section = document.querySelector('.listBooks');
+
+        allBooks.forEach(book => {
+            const bookDiv = document.createElement('div');
+            bookDiv.className = 'book-details' + (book.alreadyRead ? ' read' : '');
+
+            const img = document.createElement('img');
+            img.src = book.image;
+            img.alt = book.titre;
+
+            const details = document.createElement('span');
+            details.textContent = `${book.titre}, écrit par ${book.auteur}.`;
+
+            bookDiv.appendChild(img);
+            bookDiv.appendChild(details);
+
+            section.appendChild(bookDiv);
+        });
+    </script>
+</body>
+</html>
