@@ -1,13 +1,7 @@
-let guestList = {
-    randy: "Germany",
-    karla: "France",
-    wendy: "Japan",
-    norman: "England",
-    sam: "Argentina"
-};
-const name_user = prompt("Veuillez saisir votre nom:");
-if (name_user in guestList) {
-    console.log("Hi! I'm " + name_user + ", and I'm from " + guestList[name_user]);
-} else {
-    console.log("Hi! I'm a guest.");
+function abbrevName(name) {
+    let parts = name.trim().split(' ');
+    if (parts.length < 2) return name;
+    return `${parts[0]} ${parts[1][0]}.`;
 }
+
+console.log(abbrevName("Robin Singh")); 

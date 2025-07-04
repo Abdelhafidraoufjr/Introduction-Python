@@ -1,7 +1,13 @@
-let age = [20, 5, 12, 43, 98, 55];
+function inverseCase(str) {
+    let result = '';
+    for (let char of str) {
+        if (char === char.toUpperCase()) {
+            result += char.toLowerCase();
+        } else {
+            result += char.toUpperCase();
+        }
+    }
+    return result;
+}
 
-let somme = age.reduce((acc, val) => acc + val, 0);
-console.log(somme);
-
-let maxAge = Math.max(...age);
-console.log(maxAge);
+console.log(inverseCase('The Quick Brown Fox'));

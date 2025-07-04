@@ -1,21 +1,16 @@
-function calculateAverage(gradesList) {
-    if (!Array.isArray(gradesList) || gradesList.length === 0) {
-        console.log("Veuillez fournir un tableau de notes non vide.");
-        return null;
+function capitalize(str) {
+    let evenCaps = '';
+    let oddCaps = '';
+    for (let i = 0; i < str.length; i++) {
+        if (i % 2 === 0) {
+            evenCaps += str[i].toUpperCase();
+            oddCaps += str[i];
+        } else {
+            evenCaps += str[i];
+            oddCaps += str[i].toUpperCase();
+        }
     }
-    const sum = gradesList.reduce((acc, grade) => acc + grade, 0);
-    return sum / gradesList.length;
+    return [evenCaps, oddCaps];
 }
 
-function findAvg(gradesList) {
-    const average = calculateAverage(gradesList);
-    if (average === null) return;
-    console.log("La moyenne est :", average);
-
-    if (average > 65) {
-        console.log("Félicitations, vous avez réussi !");
-    } else {
-        console.log("Vous avez échoué. Vous devez recommencer le cours.");
-    }
-}
-findAvg([70, 80, 60, 90]);
+console.log(capitalize("abcdef"));
