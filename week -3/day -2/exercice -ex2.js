@@ -1,30 +1,14 @@
-const stock = { 
-    "banana": 6, 
-    "apple": 0,
-    "pear": 12,
-    "orange": 32,
-    "blueberry": 1
-};  
+const colors = ["rouge", "bleu", "vert", "jaune", "noir"];
+const numbersSTR = ["premier", "deuxième", "troisième", "quatrième", "cinquième"];
 
-const prices = {    
-    "banana": 4, 
-    "apple": 2, 
-    "pear": 1,
-    "orange": 1.5,
-    "blueberry": 10
-}; 
+console.log("--------------Mon choix n°-------------------\n")
+for (let i = 0; i < colors.length; i++) {
+    console.log("Mon choix n°" + (i + 1) + " est " + colors[i]);
 
-const shoppingList = ["banana", "orange", "apple"];
-
-function myBill() {
-    let total = 0;
-    for (let item of shoppingList) {
-        if (item in stock && stock[item] > 0) {
-            total += prices[item];
-            stock[item] -= 1; 
-        }
-    }
-    return total;
 }
 
-console.log(myBill());
+console.log("--------------Mon numbersSTR-------------------\n")
+for (let i = 0; i < colors.length; i++) {
+    console.log("Mon " + numbersSTR[i] + " choix est " + colors[i]);
+}
+
