@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <meta charset="utf-8" />
+    <title>Challenge: Mad Libs</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        label { display: inline-block; width: 120px; }
+        input { margin-bottom: 8px; }
+        #shuffle-button { margin-top: 10px; }
+        #story { font-weight: bold; }
+    </style>
+ </head>
+ <body>
+
+        <h1>Mad Libs</h1>
+
+        <form id="libform">
+                <label for="noun">Noun:</label><input type="text" id="noun"><br>
+                <label for="adjective">Adjective:</label><input type="text" id="adjective"><br>
+                <label for="person">Someone's Name:</label><input type="text" id="person"><br>
+                <label for="verb">Verb:</label><input type="text" id="verb"><br>
+                <label for="place">A place:</label><input type="text" id="place"><br>
+                <button id="lib-button" type="submit">Lib it!</button>
+        </form>
+        <button id="shuffle-button" style="display:none;">Shuffle Story</button>
+
+        <p>Generated story: 
+        <span id="story"></span>
+        </p>
+
+        <script>
+        const form = document.getElementById('libform');
+        const storySpan = document.getElementById('story');
+        const shuffleBtn = document.getElementById('shuffle-button');
+
+        let userWords = {};
+        let stories = [
+                ({noun, adjective, person, verb, place}) => 
+                        `Once upon a time, ${person} went to the ${adjective} ${place} to ${verb} a ${noun}.`,
+                ({noun, adjective, person, verb, place}) => 
+                        `In the ${place}, a ${adjective} ${noun} decided to ${verb} with ${person}.`,
+                ({noun, adjective, person, verb, place}) => 
+                        `${person} couldn't believe how ${adjective} the ${noun} was at the ${place} while trying to ${verb}.`
+        ];
+
+        let lastStoryIndex = -1;
+
+        function getInputValues() {
+                return {
+                        noun: document.getElementById('noun').value.trim(),
+                        adjective: document.getElementById('adjective').value.trim(),
+                        person: document.getElementById('person').value.trim(),
+                        verb: document.getElementById('verb').value.trim(),
+                        place: document.getElementById('place').value.trim()
+                };
+        }
+
+        function validateInputs(inputs) {
+                return Object.values(inputs).every(val => val.length > 0);
+        }
+
+        function getRandomStoryIndex() {
+                let idx;
+                do {
+                        idx = Math.floor(Math.random() * stories.length);
+                } while (stories.length > 1 && idx === lastStoryIndex);
+                lastStoryIndex = idx;
+                return idx;
+        }
+
+        function displayStory(words) {
+                const idx = getRandomStoryIndex();
+                storySpan.textContent = stories[idx](words);
+        }
+
+        form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const inputs = getInputValues();
+                if (!validateInputs(inputs)) {
+                        storySpan.textContent = "Please fill in all fields!";
+                        shuffleBtn.style.display = "none";
+                        return;
+                }
+                userWords = inputs;
+                displayStory(userWords);
+                shuffleBtn.style.display = "inline-block";
+        });
+
+        shuffleBtn.addEventListener('click', function() {
+                if (validateInputs(userWords)) {
+                        displayStory(userWords);
+                }
+        });
+        </script>
+
+ </body>
+</html>

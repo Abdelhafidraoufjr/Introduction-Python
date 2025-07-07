@@ -1,0 +1,20 @@
+<select id="genres">
+    <option value="rock">Rock</option>
+    <option value="blues">Blues</option>
+    <option value="classic" selected>Classic</option>
+</select>
+
+<p id="selectedValue"></p>
+
+<script>
+    const select = document.getElementById('genres');
+    const display = document.getElementById('selectedValue');
+
+    function showSelected() {
+        display.textContent = 'Selected value: ' + select.value;
+    }
+
+    select.addEventListener('change', showSelected);
+
+    showSelected();
+</script>

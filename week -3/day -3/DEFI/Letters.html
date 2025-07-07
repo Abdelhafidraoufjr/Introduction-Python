@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Letters Only Input</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        input { font-size: 1.2em; padding: 8px; width: 250px; }
+    </style>
+</head>
+<body>
+    <label for="lettersOnly">Enter letters only:</label>
+    <input type="text" id="lettersOnly" autocomplete="off" />
+
+    <script>
+        document.getElementById('lettersOnly').addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^a-zA-Z]/g, '');
+        });
+    </script>
+</body>
+</html>

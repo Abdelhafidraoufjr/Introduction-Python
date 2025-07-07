@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Email Validation Form</title>
+</head>
+<body>
+    <form id="emailForm">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <button type="submit">Submit</button>
+        <div id="message"></div>
+    </form>
+
+    <script>
+        function validateEmailWithRegex(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+
+        function validateEmailWithoutRegex(email) {
+            const atIndex = email.indexOf('@');
+            if (atIndex < 1) return false; 
+
+            const dotIndex = email.lastIndexOf('.');
+            if (dotIndex < atIndex + 2) return false; 
+
+            if (dotIndex >= email.length - 1) return false;
+
+            return true;
+        }
+
+        document.getElementById('emailForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message');
+
+
+            let isValid = validateEmailWithoutRegex(email);
+
+            if (isValid) {
+                message.textContent = "Valid email address!";
+                message.style.color = "green";
+            } else {
+                message.textContent = "Invalid email address!";
+                message.style.color = "red";
+            }
+        });
+    </script>
+</body>
+</html>

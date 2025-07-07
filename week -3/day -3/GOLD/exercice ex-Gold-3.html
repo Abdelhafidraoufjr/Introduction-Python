@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping List</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+        let shoppingList = [];
+
+        const root = document.getElementById('root');
+        const form = document.createElement('form');
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.placeholder = 'Add item...';
+        input.required = true;
+        const addButton = document.createElement('button');
+        addButton.type = 'submit';
+        addButton.textContent = 'AddItem';
+
+        const ul = document.createElement('ul');
+
+        const clearBtn = document.createElement('button');
+        clearBtn.type = 'button';
+        clearBtn.textContent = 'ClearAll';
+
+        form.appendChild(input);
+        form.appendChild(addButton);
+        root.appendChild(form);
+        root.appendChild(ul);
+        root.appendChild(clearBtn);
+
+        function renderList() {
+            ul.innerHTML = '';
+            shoppingList.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                ul.appendChild(li);
+            });
+        }
+
+        function addItem(e) {
+            e.preventDefault();
+            const value = input.value.trim();
+            if (value) {
+                shoppingList.push(value);
+                input.value = '';
+                renderList();
+            }
+        }
+
+        function clearAll() {
+            shoppingList = [];
+            renderList();
+        }
+
+        form.addEventListener('submit', addItem);
+        clearBtn.addEventListener('click', clearAll);
+    </script>
+</body>
+</html>
