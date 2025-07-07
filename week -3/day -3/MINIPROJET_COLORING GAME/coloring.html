@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coloring Squares Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .palette {
+            display: grid;
+            grid-template-columns: repeat(8, 30px);
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        .color {
+            width: 30px;
+            height: 30px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: border 0.2s;
+        }
+        .color.selected {
+            border: 3px solid #222;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(16, 30px);
+            grid-template-rows: repeat(16, 30px);
+            gap: 2px;
+            background: #bbb;
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px #aaa;
+        }
+        .cell {
+            width: 30px;
+            height: 30px;
+            background: #fff;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background 0.1s;
+            box-shadow: 0 1px 2px #eee inset;
+        }
+    </style>
+</head>
+<body>
+    <h1>Coloring Squares Game</h1>
+    <div class="palette" id="palette"></div>
+    <div class="grid" id="grid"></div>
+
+    <script>
+        const colors = [
+            '#000000', '#808080', '#C0C0C0', '#FFFFFF',
+            '#FF0000', '#FFA500', '#FFFF00', '#008000',
+            '#00FFFF', '#0000FF', '#800080', '#FFC0CB',
+            '#A52A2A', '#FFD700', '#00FF00', '#FF69B4'
+        ];
+
+        const palette = document.getElementById('palette');
+        let selectedColor = colors[0];
+
+        colors.forEach((color, idx) => {
+            const swatch = document.createElement('div');
+            swatch.className = 'color' + (idx === 0 ? ' selected' : '');
+            swatch.style.background = color;
+            swatch.addEventListener('click', () => {
+                document.querySelectorAll('.color').forEach(c => c.classList.remove('selected'));
+                swatch.classList.add('selected');
+                selectedColor = color;
+            });
+            palette.appendChild(swatch);
+        });
+
+        const grid = document.getElementById('grid');
+        const gridSize = 16;
+        let isDrawing = false;
+
+        for (let i = 0; i < gridSize * gridSize; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'cell';
+            cell.addEventListener('mousedown', (e) => {
+                isDrawing = true;
+                cell.style.background = selectedColor;
+            });
+            cell.addEventListener('mouseover', (e) => {
+                if (isDrawing) {
+                    cell.style.background = selectedColor;
+                }
+            });
+            cell.addEventListener('mouseup', () => {
+                isDrawing = false;
+            });
+            grid.appendChild(cell);
+        }
+
+        document.body.addEventListener('mouseup', () => {
+            isDrawing = false;
+        });
+    </script>
+</body>
+</html>
