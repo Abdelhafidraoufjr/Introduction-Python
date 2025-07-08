@@ -1,0 +1,39 @@
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+        #game-board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .hole {
+            width: 100px;
+            height: 100px;
+            background-color: #654321;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .mole {
+            font-size: 50px;
+        }
+        #instructions {
+            margin-top: 20px;
+            text-align: center;
+            max-width: 400px;
+        }
+        #high-scores {
+            margin-top: 20px;
+            text-align: center;
+        }
+        #high-scores ol {
+            list-style-position: inside;
+            padding-left: 0;
+        }
