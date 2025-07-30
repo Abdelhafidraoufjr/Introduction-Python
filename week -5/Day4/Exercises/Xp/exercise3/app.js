@@ -3,6 +3,7 @@ import {writeFile, readFile} from './fileManager.js';
 const fileNameToRead = 'Hello World.txt';
 const fileNameToWrite = 'Bye World.txt';
 const contentToWrite = 'Writing to the file';
+
 const content = readFile(fileNameToRead);
 
 
